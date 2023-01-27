@@ -1,0 +1,23 @@
+{
+  "name": "up_image",
+  "version": "1.0.0",
+  "description": "API REST of Web Aplication UpImage",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milenium125/UpImage.git"
+  },
+  "author": "David Sanmiguel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/milenium125/UpImage/issues"
+  },
+  "homepage": "https://github.com/milenium125/UpImage#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
