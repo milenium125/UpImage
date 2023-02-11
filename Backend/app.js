@@ -3,15 +3,16 @@
 var express = require('express'); //EXPRESS
 var app = express(); 
 
+
+
 var bodyParser = require('body-parser'); //BODY-PARSER 
 
 const cors = require('cors'); //CORS
 const { urlencoded } = require('body-parser');
 
 //IMPLEMENTACION DE DEPENDENCIAS
-
 app.use(cors());
-app.use(express.json);
+app.use(express.json());
 app.use(urlencoded());
 
 //Configuracion de CORS
@@ -34,6 +35,7 @@ app.use((req, res, next) =>{
 });
 
 //IMPORTACION DE RUTAS
+app.use(require('./routers/routers'));
 //
 //
 
