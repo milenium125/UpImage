@@ -95,3 +95,6 @@
     height: 30px;
     z-index: 100;
 }
+#msj-success{
+    display: none;
+}

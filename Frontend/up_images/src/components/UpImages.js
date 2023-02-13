@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import '../UpImage.css';
 import './javascript/events_upimages'
 const img_main = require('./images/image.png');
+const icon_successfull = require('./images/icono.png');
 
 const MainUpload = () => {
     const navigate = useNavigate();
@@ -36,8 +37,9 @@ const MainUpload = () => {
             // console.log(img_e.files);
         });
         file_reader.readAsDataURL(file[0]);
+        file_image = file[0];
         console.log();
-        console.log(file[0]);
+        console.log('file 1: ' +file[0]);
         //img_upload.setAttribute('src', file[0].pr);
     
         //Peticion para guardar la imagen y que devuelva el path para cardarlo en el src del elemento img para visualizar la preview de la imagen
@@ -52,6 +54,8 @@ const MainUpload = () => {
         let progress_bar = document.getElementById('progress-bar');
         var formulario = new FormData();
         var cont_link = document.getElementById('cont-link');
+        var btn_link = document.getElementById('cont-btn-getlink');
+        var msj_success = document.getElementById('msj-success');
         // var file_reader = new FileReader();
 
         // file_reader.readAsDataURL(file_image[0]);
@@ -78,12 +82,15 @@ const MainUpload = () => {
           })
         .then((res) =>{
             if(res.status === 200){
-                super_cont.style.display = 'flex';
-                cont_progress.style.display = 'none';
-                cont_link.style.display = 'block';
-                let link = res.data['link'];
-                inp_link.value = link;
-
+                setTimeout(() => {
+                    super_cont.style.display = 'flex';
+                    cont_progress.style.display = 'none';
+                    cont_link.style.display = 'block';
+                    let link = res.data['link'];
+                    inp_link.value = link;
+                    btn_link.style.display = 'none';
+                    msj_success.style.display = 'block';
+                }, 1000);
             }
         }).catch((e) => {
             console.log("error: " + e)
@@ -177,7 +184,13 @@ const MainUpload = () => {
     }
     return(
         <><div className='d-flex flex-row justify-content-center mt-5'>
+            
             <main className='rounded-4 shadow col-4 pt-5 pb-5 ps-4 pe-4' id='main'>
+                <div id='msj-success'>
+                    <p className='text-center' ><image><img  src={icon_successfull}/></image></p>
+                    <h3 className='text-center'>Uploaded Successfully!</h3>
+                </div>
+
                 <div className='ms-3 me-3 flex-column justify-content-center' id='super-cont'>
                     {/* <div className='rounded-circle' id='delete' onClick={delete_img}>X</div> */}
                     <div className='text-center' id='cont-btn-upfile-drag'>
@@ -193,10 +206,12 @@ const MainUpload = () => {
                                         e.preventDefault();
                                         console.log('dragLeave');
                                     }}
-                                    onDrop={(e)=>{
+                                    onDrop={(e)=>{  
                                         e.preventDefault();
                                         console.log('Drop');
                                         let file = e.dataTransfer.files;
+                                        
+                                        console.log('dato1: '+ file_image+' Dato2: '+file_image[0]);
                                         drop(file);
                                         // var btn_delete = document.getElementById("delete");
                                         // btn_delete.style.display = 'flex';
