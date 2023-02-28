@@ -64,7 +64,7 @@ const MainUpload = () => {
         
         await axios({
             method: "post",
-            url: "http://localhost:4000/uploading-files",
+            url: "https://apirest-upimage.onrender.com/uploading-files",
             data: formulario,
             headers: { "Content-Type": "multipart/form-data" },
             onUploadProgress(e){

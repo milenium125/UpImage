@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 const Imagen = async () =>{
     let {id} = useParams();
     console.log(id);
-    let file_img = await axios.get(`http://localhost:4000/image/${id.name}`)
+    let file_img = await axios.get(`https://apirest-upimage.onrender.com/image/${id.name}`)
     .then((res)=>{
        
         // console.log('ok peticion axios:'+ typeof(file_img));
