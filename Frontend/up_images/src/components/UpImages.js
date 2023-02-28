@@ -1,10 +1,9 @@
 import axios from 'axios';
-import Preview from './preview';
 import Footer from './footer';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../UpImage.css';
-import './javascript/events_upimages'
+import './javascript/events_upimages';
 const img_main = require('./images/image.png');
 const icon_successfull = require('./images/icono.png');
 
@@ -13,24 +12,24 @@ const MainUpload = () => {
     let file_image = "";
     const drop_over = (e) => {
         e.preventdefault();
-        alert('Hola Mundo');
+        //alert('Hola Mundo');
     }
     
     const drop_leave = (e) =>{
-        alert('Chao Mundo');
+        //alert('Chao Mundo');
     }
     
     const drop = (file) => {
         file_image = file;
         
-        console.log('Subiendo Archivo');     
+        //console.log('Subiendo Archivo');     
 
         var file_reader = new FileReader();
         file_reader.addEventListener('load', (e) => {
            // file_reader.result
-            console.log('ruta: '+file_reader.result);
+            //console.log('ruta: '+file_reader.result);
             cargar_img_drop(file)
-            console.log('Imagen Cargada Completamente');
+            //console.log('Imagen Cargada Completamente');
             show_image(file_reader.result);            
             
             // var img_e = document.getElementById('btn-upfile');
@@ -38,12 +37,12 @@ const MainUpload = () => {
         });
         file_reader.readAsDataURL(file[0]);
         file_image = file[0];
-        console.log();
-        console.log('file 1: ' +file[0]);
+        //console.log();
+        //console.log('file 1: ' +file[0]);
         //img_upload.setAttribute('src', file[0].pr);
     
         //Peticion para guardar la imagen y que devuelva el path para cardarlo en el src del elemento img para visualizar la preview de la imagen
-        //await axios.post('http://localhost:4000/uploading-files', file[0]);
+        //await axios.post('https://localhost:4000/uploading-files', file[0]);
     }
     
     const save_file = async() => {
@@ -59,9 +58,9 @@ const MainUpload = () => {
         // var file_reader = new FileReader();
 
         // file_reader.readAsDataURL(file_image[0]);
-        console.log('metodo save');
+        //console.log('metodo save');
         formulario.append('file',file_image);
-        console.log(formulario);
+        //console.log(formulario);
         
         await axios({
             method: "post",
@@ -72,8 +71,8 @@ const MainUpload = () => {
                 super_cont.style.display = 'none';
                 cont_progress.style.display = 'inline-block';
                 let percent_progress = e.loaded*100/e.total
-                console.log(percent_progress);
-                console.log(cont_progress.style.display);
+                //console.log(percent_progress);
+                //console.log(cont_progress.style.display);
                 progress_bar.ariaValueNow = percent_progress;
                 progress_bar.innerHTML = percent_progress.toString()+'%';
                 progress_bar.style.width = percent_progress.toString()+'%';
@@ -105,13 +104,13 @@ const MainUpload = () => {
         img_e.files = file;
         // img_e.setAttribute('name', 'file');
         // img_e2.setAttribute('name', 'file2');
-        console.log("imagen cargada: "+ file.toString());
+        //console.log("imagen cargada: "+ file.toString());
     }
     
     const show_image = (ruta) => {
         let boton_get = document.getElementById('container-getlink');
         let ocultar = document.getElementsByClassName('ocultar');
-        console.log(ocultar);
+        //console.log(ocultar);
         for (let i = 0; i < ocultar.length; i++) {
             var item = ocultar.item(i);
             item.style.display = 'none';
@@ -199,19 +198,19 @@ const MainUpload = () => {
                         <form onSubmit={save_file} method='post' encType='multipart/form-data'>                           
                             <div className='d-flex flex-column align-items-center rounded-4' id='container-inp-file-drag' 
                                 onDragOver={(e) =>{
-                                    console.log('dragover');
+                                    //console.log('dragover');
                                     e.preventDefault();
                                     }}
                                     onDragLeave={(e)=>{
                                         e.preventDefault();
-                                        console.log('dragLeave');
+                                        //console.log('dragLeave');
                                     }}
                                     onDrop={(e)=>{  
                                         e.preventDefault();
-                                        console.log('Drop');
+                                        //console.log('Drop');
                                         let file = e.dataTransfer.files;
                                         
-                                        console.log('dato1: '+ file_image+' Dato2: '+file_image[0]);
+                                        //console.log('dato1: '+ file_image+' Dato2: '+file_image[0]);
                                         drop(file);
                                         // var btn_delete = document.getElementById("delete");
                                         // btn_delete.style.display = 'flex';
@@ -235,7 +234,7 @@ const MainUpload = () => {
                                     file_reader.readAsDataURL(file[0]);
                                     // var btn_delete = document.getElementById("delete");
                                     // btn_delete.style.display = 'flex';
-                                    console.log(file[0]);
+                                    //console.log(file[0]);
                                 }}/>
                             </div>
                         </form>  
@@ -254,7 +253,7 @@ const MainUpload = () => {
                                                 show_image(file_reader.result);
                                             })
                                             file_reader.readAsDataURL(file[0]);
-                                            console.log(file[0]);
+                                            //console.log(file[0]);
                                             var btn_delete = document.getElementById("delete");
                                             btn_delete.style.display = 'flex';
                                         }}/>
