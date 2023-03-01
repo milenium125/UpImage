@@ -184,7 +184,7 @@ const MainUpload = () => {
     return(
         <><div className='d-flex flex-row justify-content-center mt-5'>
             
-            <main className='rounded-4 shadow col-4 pt-5 pb-5 ps-4 pe-4' id='main'>
+            <main className='rounded-4 shadow pt-5 pb-5 ps-4 pe-4' id='main'>
                 <div id='msj-success'>
                     <p className='text-center' ><image><img  src={icon_successfull}/></image></p>
                     <h3 className='text-center'>Uploaded Successfully!</h3>

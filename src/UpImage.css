@@ -1,3 +1,6 @@
+main{
+    width: 35%;
+}
 #container-inp-file input[type="file"]{
     appearance: none;
     display: none;
@@ -97,4 +100,48 @@
 }
 #msj-success{
     display: none;
+}
+
+
+
+
+@media (max-width: 1000px){
+    main{
+        width: 45%;
+    }
+}
+@media (max-width: 800px){
+    main{
+        width: 50%;
+    }
+}
+@media (max-width: 650px){
+    main{
+        width: 55%;
+    }
+}
+@media (max-width: 590px){
+    main{
+        width: 60%;
+    }
+}
+@media (max-width: 500px){
+    main{
+        width: 70%;
+    }
+}
+@media (max-width: 450px){
+    main{
+        width: 80%;
+    }
+}
+@media (max-width: 400px){
+    main{
+        width: 90%;
+    }
+}
+@media (max-width: 350px){
+    main{
+        width: 95%;
+    }
 }
