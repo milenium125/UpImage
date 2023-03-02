@@ -8,20 +8,19 @@ const Imagen = async () =>{
     console.log(id);
     let file_img = await axios.get(`http://localhost:4000/image/${id.name}`)
     .then((res)=>{
-       
-        // console.log('ok peticion axios:'+ typeof(file_img));
         console.log(res.data);
         console.log(id);
+        return(
+            <><file_img />
+            </>
+        );
     })
     .catch((err) =>{
         console.log('Error'+err);
     });
     console.log('ok peticion axios:'+ typeof(file_img));
         console.log(file_img)
-    return(
-        <><file_img />
-        </>
-    );
+    
 }
 
 

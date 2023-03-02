@@ -21,32 +21,16 @@ const MainUpload = () => {
     
     const drop = (file) => {
         file_image = file;
-        
-        //console.log('Subiendo Archivo');     
-
         var file_reader = new FileReader();
         file_reader.addEventListener('load', (e) => {
-           // file_reader.result
-            //console.log('ruta: '+file_reader.result);
-            cargar_img_drop(file)
-            //console.log('Imagen Cargada Completamente');
+            cargar_img_drop(file);
             show_image(file_reader.result);            
-            
-            // var img_e = document.getElementById('btn-upfile');
-            // console.log(img_e.files);
         });
         file_reader.readAsDataURL(file[0]);
         file_image = file[0];
-        //console.log();
-        //console.log('file 1: ' +file[0]);
-        //img_upload.setAttribute('src', file[0].pr);
-    
-        //Peticion para guardar la imagen y que devuelva el path para cardarlo en el src del elemento img para visualizar la preview de la imagen
-        //await axios.post('https://localhost:4000/uploading-files', file[0]);
     }
     
     const save_file = async() => {
-        // console.log(file_image);
         let inp_link = document.getElementById('link');
         let cont_progress = document.getElementById('cont-progress');
         let super_cont = document.getElementById('super-cont');
@@ -55,12 +39,7 @@ const MainUpload = () => {
         var cont_link = document.getElementById('cont-link');
         var btn_link = document.getElementById('cont-btn-getlink');
         var msj_success = document.getElementById('msj-success');
-        // var file_reader = new FileReader();
-
-        // file_reader.readAsDataURL(file_image[0]);
-        //console.log('metodo save');
         formulario.append('file',file_image);
-        //console.log(formulario);
         
         await axios({
             method: "post",
@@ -71,8 +50,6 @@ const MainUpload = () => {
                 super_cont.style.display = 'none';
                 cont_progress.style.display = 'inline-block';
                 let percent_progress = e.loaded*100/e.total
-                //console.log(percent_progress);
-                //console.log(cont_progress.style.display);
                 progress_bar.ariaValueNow = percent_progress;
                 progress_bar.innerHTML = percent_progress.toString()+'%';
                 progress_bar.style.width = percent_progress.toString()+'%';
@@ -100,11 +77,8 @@ const MainUpload = () => {
     
     const cargar_img_drop = (file) =>{
         var img_e = document.getElementById('btn-upfile-drag');
-        //var img_e2 = document.getElementById('btn-upfile');
         img_e.files = file;
-        // img_e.setAttribute('name', 'file');
-        // img_e2.setAttribute('name', 'file2');
-        //console.log("imagen cargada: "+ file.toString());
+
     }
     
     const show_image = (ruta) => {
@@ -120,60 +94,6 @@ const MainUpload = () => {
         var html_img = `<img src="${ruta}" alt="upload file" className="w-70 h-70" id="preview-img" class="rounded-4 border border-dark" />`;
         img_upload.innerHTML = html_img;
     }
-
-    // const delete_img = () => {
-    //     console.log('cerrar');
-    //     var img_upload = document.getElementById('cont-btn-upfile-drag');
-        
-    //     console.log(default_information());
-    //     img_upload.innerHTML = default_information.toString();
-    // }
-    // function default_information(props){
-    //     if(props.pagina === 0){
-
-    //     }else{
-    //     return(
-    //     <><h2 className='text-center'>Upload Your Image</h2><p className='text-center'>File Should be Jpeg, Png...</p><form onSubmit={save_file} method='post' encType='multipart/form-data'>
-    //         <div className='d-flex flex-column align-items-center rounded-4' id='container-inp-file-drag'
-    //             onDragOver={(e) => {
-    //                 console.log('dragover');
-    //                 e.preventDefault();
-    //             } }
-    //             onDragLeave={(e) => {
-    //                 e.preventDefault();
-    //                 console.log('dragLeave');
-    //             } }
-    //             onDrop={(e) => {
-    //                 e.preventDefault();
-    //                 console.log('Drop');
-    //                 let file = e.dataTransfer.files;
-    //                 drop(file);
-    //                 var btn_delete = document.getElementById('delete');
-    //                 btn_delete.style.display = 'flex';
-    //                 //console.log(file);
-    //             } }>
-
-    //             <label htmlFor='btn-upfile-drag' className='w-100' id='container-preview'>
-    //                 <p className='text-center pt-5 pb-4 ps-5 pe-5'>
-    //                     <img src={img_main} alt='upload file drag' className='w-75 justify-self-center' id='preview-img' />
-    //                 </p>
-    //                 <h6 className='mt-5 mb-5 text-center'>Drag & Drop your image here</h6>
-    //             </label>
-    //             <input type={'file'} id='btn-upfile-drag' name='file' onChange={() => {
-    //                 let boton = document.getElementById('btn-upfile-drag');
-    //                 let file = boton.files;
-    //                 file_image = file[0];
-    //                 let file_reader = new FileReader();
-    //                 file_reader.addEventListener('load', (e) => {
-    //                     show_image(file_reader.result);
-    //                 });
-    //                 file_reader.readAsDataURL(file[0]);
-    //                 var btn_delete = document.getElementById('delete');
-    //                 btn_delete.style.display = 'flex';
-    //                 console.log(file[0]);
-    //             } } />
-    //         </div>
-    //     </form></>)}};
 
     function copy_clipboard(){
         let link_path = document.getElementById('link');
